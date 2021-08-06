@@ -1,0 +1,36 @@
+$text: hsl(0, 0%, 96%)
+$text-strong: hsl(0, 0%, 98%)
+$card-header-background-color: rgb(69, 72, 110)
+$card-background-color: rgb(89, 90, 124)
+$primary: rgb(255, 126, 219)
+
+$button-color: hsl(0, 0%, 96%)
+$button-background-color: rgb(37, 39, 43)
+$button-hover-color: hsl(0, 0%, 98%)
+$button-hover-border-color: hsl(0, 0%, 98%)
+
+$input-color: rgb(254, 222, 93)
+$input-background-color: rgb(38, 35, 53)
+@import './bulma/bulma.sass';
+@import './bulma-timeline/src/sass/index.sass'
+@import './themes.sass'
+// https://medium.com/@katiemctigue/how-to-create-a-dark-mode-in-sass-609f131a3995
+
+.theme-dark-nav
+    background-color: black
+    color: $white-ter
+
+    &:hover
+        background-color: black !important 
+
+.theme-background
+    background-color: rgb(35, 37, 50)
+    color: $white-ter
+
+hr
+    background-color: rgb(88, 88, 88)
+
+#hero img
+    border-width: 1en
+    border-color: rgb(69, 72, 110)
+    border-style: solid

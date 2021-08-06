@@ -1,0 +1,67 @@
+<section class="section" id="contact">
+	<h1 class="title">
+		{{ .Title }}
+	</h1>
+	<div class="">
+		{{ .Content }}
+	</div>
+
+	<form class="is-size-6" method='{{ .Params.method | default "POST" }}' action="{{ .Params.action }}"
+		{{ if .Params.netlify }} data-netlify="true" {{ end }}>
+		{{ range .Params.Inputs }}
+
+		{{ $pattern := "" }}
+		{{ with .pattern }}
+		{{ $pattern = printf "pattern=%q" . | safeHTMLAttr}}
+		{{ end }}
+
+		{{ $minlength := "" }}
+		{{ $maxlength := "" }}
+		{{ with .minlength }}
+		{{ $minlength = printf "minlength=%q" . | safeHTMLAttr}}
+		{{ end }}
+		{{ with .maxlength }}
+		{{ $maxlength = printf "maxlength=%q" . | safeHTMLAttr}}
+		{{ end }}
+
+
+		<div class="field">
+			{{ if .label }}
+			<label class="label is-size-5" for="{{ .name }}">{{ .label }}
+				{{ if .required }}
+				<span class="">*</span>
+				{{ end }}
+			</label>
+			{{ end }}
+			<div class="control">
+				{{ $class := "input is-size-5" }}
+				{{ if eq .type "textarea" }}
+				{{ $class := "textarea is-size-5"}}
+				<textarea rows="5" {{ printf "name=%q" .name | safeHTMLAttr }} {{ printf "id=%q" .name | safeHTMLAttr }}
+					{{ printf "placeholder=%q" .placeholder | safeHTMLAttr }} {{ $minlength }} {{ $maxlength }}
+					{{ if .required }} required {{ end }} {{ printf "class='%s'" $class | safeHTMLAttr }}></textarea>
+				{{ else }}
+				{{ $type := .type | default "text" }}
+				<input {{ printf "type=%q" .type | safeHTMLAttr }} {{ printf "name=%q" .name | safeHTMLAttr }}
+					{{ printf "id=%q" .name | safeHTMLAttr }} {{ printf "placeholder=%q" .placeholder | safeHTMLAttr }}
+					{{ $pattern }} {{ if .required }} required {{ end }}
+					{{ printf "class='%s'" $class | safeHTMLAttr }}>
+				{{ end }}
+			</div>
+		</div>
+		{{ end }}
+
+		{{ if .Params.useEmail }}
+		{{ with .Site.Params.email }}
+		<a class="" href="mailto:{{ . }}">
+			{{ i18n "contact_email" }}
+		</a>
+		{{ end }}
+		{{ end }}
+
+		<div class="control is-pulled-right">
+			<input type="reset" class="button" value='{{ i18n "cancel" }}' />
+			<input type="submit" class="button is-primary is-dark" value='{{ i18n "submit" }}' />
+		</div>
+	</form>
+</section>

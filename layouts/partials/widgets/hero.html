@@ -1,0 +1,25 @@
+<section id="hero" class="section columns is-vcentered mt-1">
+	<div class="level-item column has-text-centered ">
+		<div class="content is-size-6">
+			{{ .Content }}
+		</div>
+		<div class="">
+			{{ range .Params.btn }}
+			<a class="button {{ with .primary }} is-primary {{ end }}"
+				href="{{ .url | relLangURL }}">
+				{{.label}}
+			</a>
+
+			{{ end }}
+		</div>
+	</div>
+
+	{{ with .Params.hero_media }}
+	<div class="column is-one-third">
+		<figure class="image is-1by1">
+			<img src="{{ . | relURL}}" alt="hero image" class="is-rounded p-1">
+		</figure>
+	</div>
+	{{ end }}
+
+</section>

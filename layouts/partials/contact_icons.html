@@ -1,0 +1,13 @@
+<section class="section">
+	<div class="">
+		{{ range .Site.Params.social }}
+		<a href="{{ .url }}" title="{{ .name }}"
+			class=""
+			{{ if .blank }} target="_blank" {{ end }} {{ if strings.HasPrefix .url "http" }} rel="noopener" {{ end }}>
+			<figure class="image is-128x128">
+				<img src="{{ .icon | relURL }}" alt="{{ .alt }}" class="">
+			</figure>
+		</a>
+		{{ end }}
+	</div>
+</section>

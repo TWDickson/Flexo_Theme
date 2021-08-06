@@ -1,0 +1,42 @@
+{{ $dateFormat := .Params.date_format | default "02.01.2006" }}
+
+<section class="section pt-1" id="timeline">
+	<div class="">
+		<h1 class="title">
+			{{ .Title }}
+		</h1>
+		{{ with .Params.subtitle}}
+		<h2 class="">{{ . }}</h2>
+		{{ end }}
+	</div>
+
+	{{/* Timeline bar */}}
+	{{ range $index, $period := .Params.period }}
+	<div class="card" id="timeline-level-{{ $index | markdownify }}">
+		<header class="card-header mt-3">
+			<div class="column">
+				<h2 class="is-size-4 has-text-weight-semibold">{{ .title | markdownify }}</h2>
+				<h3 class="is-size-6 has-text-weight-medium">{{ .subtitle | markdownify }}</h3>
+				<h4 class="is-size-6 has-text-weight-light">{{ $period.date_start | dateFormat $dateFormat }} &mdash; 
+					{{ if eq $period.date_end "" }}
+						{{ i18n "present" }}
+					{{else}}
+						{{ $period.date_end | dateFormat $dateFormat }}
+					{{end}}
+				</h4>
+				{{ with .location }}
+				<h5 class="is-size-6 has-text-weight-light is-italic">{{ . }}</h5>
+				{{ end }}
+			</div>
+			
+		</header>
+			{{ with .description }}
+			<div class="card-content">
+				<div class="content is-size-6">
+					<p>{{ . | markdownify }}</p>
+				</div>
+			</div>
+			{{ end }}
+		</div>
+	{{ end }}
+</section>

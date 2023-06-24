@@ -48,19 +48,18 @@
 					{{ printf "class='%s'" $class | safeHTMLAttr }}>
 				{{ end }}
 			</div>
-			<input type="hidden" name="_formName" value="TWDickson Contact Form">
-			<input type="hidden" name="_redirectTo" value="https://twdickson.com">
-			<label for="TEmail" style="display: none;">Test</label>
-			<input id="TEmail" type="email" name="_t_email" style="display: none;">
 		</div>
 		{{ end }}
-
+		<input type="hidden" name="_formName" value="TWDickson Contact Form">
+		<input type="hidden" name="_redirectTo" value="https://twdickson.com">
+		<label for="TEmail" style="display: none;">Test</label>
+		<input id="TEmail" type="email" name="_t_email" style="display: none;">
 		{{ if .Params.useEmail }}
-		{{ with .Site.Params.email }}
-		<a class="" href="mailto:{{ . }}">
-			{{ i18n "contact_email" }}
-		</a>
-		{{ end }}
+			{{ with .Site.Params.email }}
+			<a class="" href="mailto:{{ . }}">
+				{{ i18n "contact_email" }}
+			</a>
+			{{ end }}
 		{{ end }}
 
 		<div class="control is-pulled-right">

@@ -1,9 +1,9 @@
-<header class="columns is-vcentered is-centered has-background-primary" id="title">
+<header class="columns is-vcentered is-centered mt-5" id="title">
     <div class="column is-narrow header_text has-text-centered">
-        <h1 class="title has-text-white">{{ .Title }}</h1>
-        <h2 class="subtitle has-text-white">{{- .Params.subtitle -}}</h2>
-        <figure class="image is-64x64 is-inline-block">
+        <div class="title has-text-primary is-underlined">{{ .Title }}</div>
+        <div class="subtitle has-text-secondary">{{- .Params.subtitle -}}</div>
+        {{/*  <figure class="image is-64x64 is-inline-block">
             <img src="">
-        </figure>
+        </figure>  */}}
     </div>
 </header>

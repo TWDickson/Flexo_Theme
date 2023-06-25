@@ -1,0 +1,8 @@
+{{ $js_bundle := slice }}
+{{ $js_bundle = $js_bundle | append (resources.Get "js/burger_menu.js") }}
+
+{{ $js_bundle = $js_bundle | resources.Concat "js/flexo.min.js" | fingerprint "md5" }}
+<script src="{{ $js_bundle.RelPermalink }}" intergrity="{{ $js_bundle.Data.Integrity }}" crossorigin="anonymous"></script>
+{{ if hugo.IsProduction }}
+<script defer data-domain="twdickson.com" src="https://pa.twdickson.com/js/script.js"></script>
+{{ end }}

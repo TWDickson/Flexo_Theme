@@ -11,7 +11,7 @@
 		{{ if .IsTranslated }}
 		<div class="navbar-item">
 			{{ range .Translations }}
-			<a href="{{ .Permalink }}" class="">
+			<a href="{{ .RelPermalink }}" class="">
 				<span class="">
 					{{ .Language | upper }}
 				</span>

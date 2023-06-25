@@ -1,11 +1,11 @@
 {{ define "main" }}
-
+<nav class="breadcrumb is-left has-bullet-separator is-small" aria-label="breadcrumbs">
+	{{ partial "breadcrumb.html" . }}
+</nav>
+<a id="article"></a>
 <article class="column content pt-2">
 	<div class="content" id="content">
 		{{ partial "single-title-header.html" . }}
-		<nav class="breadcrumb is-centered has-bullet-separator" aria-label="breadcrumbs">
-			{{ partial "breadcrumb.html" . }}
-		  </nav>
 		{{ .Content }}
 	</div>
 </article>

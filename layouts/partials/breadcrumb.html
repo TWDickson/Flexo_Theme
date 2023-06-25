@@ -1,7 +1,9 @@
-<ul id="breadcrumbs">
+<ul>
     {{- /* 
     Set the url scratch variable to an empty string.
     */ -}}
+    <li class="mt-0"><a href="{{.Site.Home.RelPermalink}}">{{ .Site.Title }}</a></li>
+    {{ $current_page := string .RelPermalink }}
     {{- $.Scratch.Set "url" "" -}}
 
     {{- /*
@@ -39,12 +41,13 @@
             */ -}}
             {{- if eq ($.Scratch.Get "isPage") "true" -}}
                 {{- with $.Site.GetPage (print . ".md") -}}
-                    <li><a href="{{ $.Scratch.Get `url` }}">{{ .Title }}</a></li>
+                    <li class="mt-0 {{ if eq ($.Scratch.Get `url`) (strings.TrimRight `/` $current_page)}}is-active{{ end }}"><a href="{{ $.Scratch.Get `url` }}">{{ .Title }}</a></li>
                 {{- end -}}
 
             {{- /* Otherwise, print the link to the section. */ -}}
             {{- else -}}
-                <li><a href="{{ $.Scratch.Get `url` }}">{{ humanize . | title }}</a></li>
+                 {{/*  {{if eq  $.Page.RelPermalink }}foo{{ end }}  */}}
+                <li class="mt-0 {{ if eq ($.Scratch.Get `url`) (strings.TrimRight `/` $current_page)}}is-active{{ end }}"><a href="{{ $.Scratch.Get `url` }}">{{ humanize . | title }}</a></li>
             {{- end -}}
         {{- end -}}
     {{- end -}}

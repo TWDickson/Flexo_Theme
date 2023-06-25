@@ -3,13 +3,13 @@
 
 
 {{ $bundle := $bundleRaw | resources.ToCSS (dict "outputStyle" "compressed") | fingerprint}}
-<link rel="stylesheet" href="{{ $bundle.Permalink }}" crossorigin="anonymous" media="screen"
+<link rel="stylesheet" href="{{ $bundle.RelPermalink }}" crossorigin="anonymous" media="screen"
 	integrity="{{ $bundle.Data.Integrity }}">
 
 {{/* Blog post page syntax highlightning */}}
 {{ if eq .Type "blog" }}
 {{ $syntax := resources.Get "css/syntax.css" }}
 {{ $syntax = $syntax | resources.Minify | fingerprint "md5" }}
-<link rel="stylesheet" href="{{ $syntax.Permalink }}" crossorigin="anonymous" integrity="{{ $syntax.Data.Integrity }}" media="screen">
+<link rel="stylesheet" href="{{ $syntax.RelPermalink }}" crossorigin="anonymous" integrity="{{ $syntax.Data.Integrity }}" media="screen">
 {{ end }}
 

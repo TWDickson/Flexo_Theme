@@ -1,0 +1,51 @@
+<ul id="breadcrumbs">
+    {{- /* 
+    Set the url scratch variable to an empty string.
+    */ -}}
+    {{- $.Scratch.Set "url" "" -}}
+
+    {{- /*
+    Split the relative permalink into an array of strings, using the slash character as a delimiter.
+    */ -}}
+    {{- range (split .RelPermalink "/") -}}
+
+        {{- /* 
+        If the current string is empty, skip it.
+        */ -}}
+        {{- if (gt (len .) 0) -}}    
+            {{- /*
+            Set the isPage scratch variable to false.
+            */ -}}
+            {{- $.Scratch.Set "isPage" "false" -}}
+            
+            {{- /*
+            Add the current string to the url scratch variable.
+            */ -}}
+            {{- $.Scratch.Add "url" (print "/" . ) -}}
+
+            {{- /*
+            If the current string is the name of a page, set the isPage scratch variable to true.
+            */ -}}
+            {{- if $.Site.GetPage (print . ".md") -}}
+                {{- with $.Site.GetPage (print . ".md") -}}
+                    {{- if .IsPage -}}
+                        {{- $.Scratch.Set "isPage" "true" -}}
+                    {{- end -}}
+                {{- end -}}
+            {{- end -}}
+
+            {{- /*
+            If the isPage scratch variable is true, print the link to the page.
+            */ -}}
+            {{- if eq ($.Scratch.Get "isPage") "true" -}}
+                {{- with $.Site.GetPage (print . ".md") -}}
+                    <li><a href="{{ $.Scratch.Get `url` }}">{{ .Title }}</a></li>
+                {{- end -}}
+
+            {{- /* Otherwise, print the link to the section. */ -}}
+            {{- else -}}
+                <li><a href="{{ $.Scratch.Get `url` }}">{{ humanize . | title }}</a></li>
+            {{- end -}}
+        {{- end -}}
+    {{- end -}}
+</ul>

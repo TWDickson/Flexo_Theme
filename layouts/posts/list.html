@@ -1,25 +1,23 @@
 {{ define "main" }}
 {{ partial "single-title-header.html" . }}
-{{ $p := .Paginate (.Pages.ByDate.Reverse) 1}}
+{{ $p := .Paginate (.Pages.ByDate.Reverse) 9}}
     {{/*  <nav class="pagination" role="navigation" aria-label="pagination">
     {{ template "_internal/pagination.html" .}}
     </nav>  */}}
-    {{ partial "pagination-station.html" (dict "p" $p "s" .Scratch) }}
-
-
-    {{ range $p.Pages }}
-        <div class="block mb-2">
-            <a href="{{.RelPermalink}}#article">
-                <article class="box">
-                    <div class="level">
-                        <div class="level-left">
-                            <h1 class="title">
-                                {{ .Title }}
-                            </h1>
+    <ul class="mb-2">
+        {{ range $p.Pages }}
+            <li class="block">
+                <a aria-label="{{ .Title }}-{{ .Date.Format `2006-01-02` }}" href="{{.RelPermalink}}#article">
+                    <div class="post_list_item">
+                        <div class="title is-4">{{ .Title }}</div>
+                        <div class="subtitle is-6">{{ .Date.Format "2006-01-02" }}</div>
+                        <div class="summary content is-size-6">
+                            {{ .Summary }}
                         </div>
                     </div>
-                </article>
-            </a>
-        </div>
-    {{ end }}
+                </a>
+            </li>
+        {{ end }}
+    </ul>
+    {{ partial "pagination-station.html" (dict "p" $p "s" .Scratch) }}
 {{ end }}

@@ -2,10 +2,10 @@
 <nav class="breadcrumb is-left has-bullet-separator is-small" aria-label="breadcrumbs">
 	{{ partial "breadcrumb.html" . }}
 </nav>
-<a id="article"></a>
 <article class="column content pt-2">
-	<div class="content" id="content">
-		{{ partial "single-title-header.html" . }}
+	{{ partial "single-title-header.html" . }}
+	<a id="article"></a>
+	<div class="content is-size-3 is-size-4-mobile is-family-secondary" id="content">
 		{{ .Content }}
 	</div>
 </article>

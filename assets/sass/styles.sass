@@ -1,5 +1,9 @@
+// Font And Text Stuff
 $text: hsl(0, 0%, 96%)
 $text-strong: hsl(0, 0%, 98%)
+$family-secondary: 'serif'
+
+// Colours
 $card-header-background-color: rgb(69, 72, 110)
 $card-background-color: rgb(89, 90, 124)
 $primary: rgb(255, 126, 219)
@@ -32,9 +36,13 @@ hr
 a
     color: rgb(254, 222, 93)
 
-//    Hero image needs border-color important because the border commands are somehow being built
-//    on theme compilation, but not in live server mode.
+
 #hero img
     border-width: 1en
-    border-color: rgb(69, 72, 110) !important
+    border-color: rgb(69, 72, 110)
     border-style: solid
+
+.post_list_item
+    @extend .box
+    background: none
+    border: solid 1px rgb(69, 72, 110)

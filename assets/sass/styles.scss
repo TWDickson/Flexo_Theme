@@ -28,6 +28,12 @@ html {
     @include dark{
         color: $white-ter !important;
     }
+    .content > * {
+        color: $black-ter !important;
+        @include dark{
+            color: $white-ter !important;
+        }
+    }
 }
 
 .input-text {

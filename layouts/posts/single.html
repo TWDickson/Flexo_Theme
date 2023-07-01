@@ -1,12 +1,32 @@
-{{ define "main" }}
-<nav class="breadcrumb is-left has-bullet-separator is-small" aria-label="breadcrumbs">
-	{{ partial "breadcrumb.html" . }}
-</nav>
-<article class="column content pt-2">
-	{{ partial "single-title-header.html" . }}
-	<a id="article"></a>
-	<div class="content is-size-3 is-size-4-mobile is-family-secondary" id="content">
-		{{ .Content }}
+<!DOCTYPE html>
+<html lang='{{ .Site.LanguageCode }}' class=''>
+
+<head>
+	{{ partial "head/metadata.html" . }}
+	{{ partial "head/css.html" . }}
+</head>
+
+<body class="has-navbar-fixed-bottom theme-background">
+	{{- partial "header.html" . -}}
+
+	<nav class="breadcrumb is-left has-bullet-separator is-small mb-0" aria-label="breadcrumbs">
+		{{ partial "breadcrumb.html" . }}
+	</nav>
+	<div class="container">
+		<main>
+			<article class="column content">
+				{{ partial "single-title-header.html" . }}
+				<a id="article"></a>
+				<div class="content is-size-3 is-size-4-mobile is-family-secondary" id="content">
+					{{ .Content }}
+				</div>
+			</article>
+		</main>
+		{{- partial "footer.html" . -}}
 	</div>
-</article>
-{{ end }}
+	<!-- JS -->
+	<div class="is-invisible is-hidden">
+		{{ partial "footer/js.html" . }}
+	</div>
+</body>
+</html>

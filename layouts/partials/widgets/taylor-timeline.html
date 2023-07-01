@@ -32,10 +32,8 @@
 		</header>
 			{{ with .description }}
 			<div class="wrapper is-collapsible" id="timeline-level-{{ $index | markdownify }}-content" data-parent="timeline-level-{{ $index | markdownify }}-header">
-				<div class="card-content">
-					<div class="content is-size-6">
-						<p>{{ . | markdownify }}</p>
-					</div>
+				<div class="card-content content is-size-6">
+					<p>{{ . | markdownify }}</p>
 				</div>
 			</div>
 			{{ end }}

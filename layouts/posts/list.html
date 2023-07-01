@@ -4,7 +4,7 @@
     {{/*  <nav class="pagination" role="navigation" aria-label="pagination">
     {{ template "_internal/pagination.html" .}}
     </nav>  */}}
-    <ul class="mb-2">
+    <ul class="mb-2 mx-1">
         {{ range $p.Pages }}
             <li class="block">
                 <a aria-label="{{ .Title }}-{{ .Date.Format `2006-01-02` }}" href="{{.RelPermalink}}#article">

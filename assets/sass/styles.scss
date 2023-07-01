@@ -4,46 +4,75 @@ $text-strong: hsl(0, 0%, 98%);
 $family-secondary: 'serif';
 
 // Colours
-$card-header-background-color: rgb(69, 72, 110);
-$card-background-color: rgb(89, 90, 124);
 $primary: rgb(255, 126, 219);
+$secondary:  rgb(89, 90, 124);
 
 $button-color: hsl(0, 0%, 96%);
 $button-background-color: rgb(37, 39, 43);
 $button-hover-color: hsl(0, 0%, 98%);
 $button-hover-border-color: hsl(0, 0%, 98%);
 
-$input-color: rgb(254, 222, 93);
-$input-background-color: rgb(38, 35, 53);
 
 @import './toggle_theme.scss';
 @import 'bulma/bulma';
 @import '@creativebulma/bulma-collapsible/src/sass/index.sass';
 
 html {
+    // Set this to transparent, removes white box at header
     background-color: transparent;
+}
+
+// Override Bulma's Text Colours
+.title, .subtitle, .label, .content{
+    color: $black-ter !important;
+    @include dark{
+        color: $white-ter !important;
+    }
+}
+
+.input-text {
+    $input-color: rgb(254, 222, 93);
+    color: $secondary;
+    background-color: $white-ter;
+    @include dark{
+        color: $input-color;
+        background-color: $secondary;
+    }
+    &::placeholder {
+        color: $secondary;
+        @include dark{
+            color: $input-color;
+        }
+    }
 }
 
 .theme-dark-nav {
     // background-color: black;
-    color: $white-ter;
+    color: $black-ter;
+    &.navbar {
+        border-top: 2pt solid $secondary;
 
+        @include dark{
+            border-top: 2pt solid $primary;
+        }
+    }
     @include dark{
         background-color: black;
+        color: $white-ter;
     }
 
-    @include light {
-        background-color: black;
-    }
-
-    &:hover {
-        background-color: black !important;
+    .navbar-menu * .navbar-item:hover {
+        color: $black-ter;
+        background-color: rgba($secondary, $alpha: 0.20);
+        @include dark{
+            color: $white-ter;
+            text-shadow: 0 0 2pt $primary;
+            background-color: rgba($primary, $alpha: 0.20)
+        }
     }
 }
 
 .theme-background {
-    // background-color: rgb(35, 37, 50);
-
     background-color: $white-ter;
     color: $black-ter;
 
@@ -55,21 +84,98 @@ html {
 }
 
 hr {
-    background-color: rgb(88, 88, 88);
+    background-color: $secondary;
+    @include dark{
+        background-color: $primary;
+    }
 }
 
-a {
-    color: rgb(254, 222, 93);
+.content * a {
+    color: $primary;
+    text-decoration: underline;
+    @include dark{
+        color: rgb(254, 222, 93);
+    }
 }
 
 #hero img {
     border-width: 1en;
-    border-color: rgb(69, 72, 110);
+    border-color: $secondary;
     border-style: solid;
 }
 
 .post_list_item {
     @extend .box;
     background: none;
-    border: solid 1px rgb(69, 72, 110);
+    border: solid 1px $secondary;
+    @include dark{
+        box-shadow: inset 5pt 0pt 0pt 0pt $primary;
+        border: solid 1px $primary;
+    }
+    .subtitle {
+        margin-bottom: 2pt;
+    }
+    .summary {
+        color: lighten($black-ter, 20%) !important;
+        // color: rgba($black-ter, $alpha: 0.60) !important;
+        @include dark{
+            color: darken($white-ter, 20%) !important;
+        }
+    }
+}
+
+.card {
+    background-color: transparent;
+}
+.card-header {
+    $card-header-background-color: rgb(69, 72, 110);
+    @extend .card-header;
+    background-color: $card-header-background-color;
+}
+.card-content {
+    $card-background-color: rgb(89, 90, 124);
+    @extend .card-content;
+    border-radius: 0% 0% 4pt 4pt !important;
+    background-color: $card-background-color;
+    color: $white-ter !important;
+    @include dark{
+        background-color: $card-background-color;
+    }
+}
+
+.breadcrumb {
+    @extend .breadcrumb;
+    background-color: $secondary;
+    border-bottom: 1pt solid $primary;
+
+    @include dark{
+        background-color: $primary;
+        border-bottom: 1pt solid $secondary;
+    }
+    * li {
+        &::before {
+            color: $white-ter;
+            @include dark{
+                color: $black-ter;
+            }
+        }
+        &.is-active {
+            a {
+                text-decoration: underline;
+            }
+        }
+        a {
+            color: $white-ter;
+            @include dark{
+                color: $black-ter;
+            }
+            &:hover {
+                color: $white-ter;
+                background-color: rgba($primary, $alpha: 0.20) !important;
+                @include dark{
+                    background-color: rgba($secondary, $alpha: 0.20) !important;
+                }
+            }
+        }
+    }
 }

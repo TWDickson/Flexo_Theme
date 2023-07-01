@@ -39,13 +39,13 @@
 				{{ $class := "textarea is-size-5"}}
 				<textarea rows="5" {{ printf "name=%q" .name | safeHTMLAttr }} {{ printf "id=%q" .name | safeHTMLAttr }}
 					{{ printf "placeholder=%q" .placeholder | safeHTMLAttr }} {{ $minlength }} {{ $maxlength }}
-					{{ if .required }} required {{ end }} {{ printf "class='%s'" $class | safeHTMLAttr }}></textarea>
+					{{ if .required }} required {{ end }} {{ printf "class='%s input-text'" $class | safeHTMLAttr }}></textarea>
 				{{ else }}
 				{{ $type := .type | default "text" }}
 				<input {{ printf "type=%q" .type | safeHTMLAttr }} {{ printf "name=%q" .name | safeHTMLAttr }}
 					{{ printf "id=%q" .name | safeHTMLAttr }} {{ printf "placeholder=%q" .placeholder | safeHTMLAttr }}
 					{{ $pattern }} {{ if .required }} required {{ end }}
-					{{ printf "class='%s'" $class | safeHTMLAttr }}>
+					{{ printf "class='%s input-text'" $class | safeHTMLAttr }}>
 				{{ end }}
 			</div>
 		</div>

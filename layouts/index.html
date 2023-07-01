@@ -1,14 +1,16 @@
 {{ define "main" }}
     {{ with .Site.GetPage "/home"}}
-        {{ range $index, $st := .Resources.ByType "page" }}
-
-            {{ if ne $st.Params.hidden true }}
-                {{ $widget := or $st.Params.widget "blank" }}
-                {{ $widget_path := printf "widgets/%s.html" $widget}}
-                {{ partial $widget_path $st }}
-                {{ if ne $widget "blank" }}
-                    <hr class="">
-                {{ end }}
+        {{ $pages := (where (.Resources.ByType "page") "Params.hidden" "ne" true) }}
+        {{ $total_len := len $pages }}
+        {{ range $index, $st := $pages }}
+            {{ $widget := or $st.Params.widget "blank" }}
+            {{ $widget_path := printf "widgets/%s.html" $widget}}
+            {{ partial $widget_path $st }}
+            {{ if and (ne $widget "blank") (lt $index (sub $total_len 1)) }}
+                <hr class="">
+            {{ else if (eq $index (sub $total_len 1))}}
+            {{/*  This floats the final element up above the navbar  */}}
+            <span class="is-invisible">&nbsp;</span>
             {{ end }}
         {{ end }}
         {{/*}}

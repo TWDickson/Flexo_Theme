@@ -1,5 +1,5 @@
 {{ $dateFormat := .Params.date_format | default "02.01.2006" }}
-
+{{ $widget_page:= .Site.GetPage (printf "/%v" (path.Dir .File )) }} {{/* This seems to work to get the page without the directory stuff */}}
 <section class="section pt-1" id="timeline">
 	<div class="">
 		<h1 class="title">
@@ -13,7 +13,7 @@
 	{{/* Timeline bar */}}
 	{{ range $index, $period := .Params.period }}
 	<div class="card" id="timeline-level-{{ $index | markdownify }}">
-		<header class="card-header mt-3">
+	<header class="card-header mt-3 is-clickable" id="timeline-level-{{ $index | markdownify }}-header" data-action="collapse" data-target="timeline-level-{{ $index | markdownify }}-content">
 			<div class="column">
 				<h2 class="is-size-4 has-text-weight-semibold">{{ .title | markdownify }}</h2>
 				<h3 class="is-size-6 has-text-weight-medium">{{ .subtitle | markdownify }}</h3>
@@ -31,9 +31,11 @@
 			
 		</header>
 			{{ with .description }}
-			<div class="card-content">
-				<div class="content is-size-6">
-					<p>{{ . | markdownify }}</p>
+			<div class="wrapper is-collapsible" id="timeline-level-{{ $index | markdownify }}-content" data-parent="timeline-level-{{ $index | markdownify }}-header">
+				<div class="card-content">
+					<div class="content is-size-6">
+						<p>{{ . | markdownify }}</p>
+					</div>
 				</div>
 			</div>
 			{{ end }}

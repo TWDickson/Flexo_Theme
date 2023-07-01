@@ -1,0 +1,15 @@
+{{ define "main" }}
+    {{ $len := len (.Resources.ByType "page")}}
+    {{ range $index, $st := .Resources.ByType "page" }}
+        {{ if ne $st.Params.hidden true }}
+            {{/*  {{ printf "%#v" $st }}  */}}
+            {{ $widget := or $st.Params.widget "blank" }}
+            {{ $widget_path := printf "widgets/%s.html" $widget}}
+            {{ partial $widget_path $st }}
+            {{ if and (ne $widget "blank") (ne (add $index 1) $len) }}
+                <hr class="my-1">
+            {{ end }}
+        {{ end }}
+    {{ end }}
+    {{ .Content }}
+{{ end }}

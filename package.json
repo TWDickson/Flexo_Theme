@@ -1,0 +1,23 @@
+{
+  "author": "Taylor Dickson",
+  "comments": {
+    "dependencies": {
+      "@creativebulma/bulma-collapsible": "project",
+      "bulma": "project"
+    },
+    "devDependencies": {}
+  },
+  "dependencies": {
+    "@creativebulma/bulma-collapsible": "^1.0.4",
+    "bulma": "^0.9.4"
+  },
+  "description": "",
+  "devDependencies": {},
+  "keywords": [],
+  "license": "Dunno, don't touch it",
+  "name": "flexo",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "version": "1.0.0"
+}

@@ -1,0 +1,17 @@
+{
+	"name": "flexo",
+	"version": "1.0.0",
+	"description": "",
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1"
+	},
+	"keywords": [],
+	"author": "Taylor Dickson",
+	"license": "Dunno, don't touch it",
+	"dependencies": {
+		"@creativebulma/bulma-collapsible": "^1.0.4",
+		"bulma": "^0.9.4"
+	},
+	"devDependencies": {
+	}
+}

@@ -1,0 +1,75 @@
+// Font And Text Stuff
+$text: hsl(0, 0%, 96%);
+$text-strong: hsl(0, 0%, 98%);
+$family-secondary: 'serif';
+
+// Colours
+$card-header-background-color: rgb(69, 72, 110);
+$card-background-color: rgb(89, 90, 124);
+$primary: rgb(255, 126, 219);
+
+$button-color: hsl(0, 0%, 96%);
+$button-background-color: rgb(37, 39, 43);
+$button-hover-color: hsl(0, 0%, 98%);
+$button-hover-border-color: hsl(0, 0%, 98%);
+
+$input-color: rgb(254, 222, 93);
+$input-background-color: rgb(38, 35, 53);
+
+@import './toggle_theme.scss';
+@import 'bulma/bulma';
+@import '@creativebulma/bulma-collapsible/src/sass/index.sass';
+
+html {
+    background-color: transparent;
+}
+
+.theme-dark-nav {
+    // background-color: black;
+    color: $white-ter;
+
+    @include dark{
+        background-color: black;
+    }
+
+    @include light {
+        background-color: black;
+    }
+
+    &:hover {
+        background-color: black !important;
+    }
+}
+
+.theme-background {
+    // background-color: rgb(35, 37, 50);
+
+    background-color: $white-ter;
+    color: $black-ter;
+
+    @include dark{
+        background-color: rgb(35, 37, 50);
+        color: $white-ter;
+    }
+
+}
+
+hr {
+    background-color: rgb(88, 88, 88);
+}
+
+a {
+    color: rgb(254, 222, 93);
+}
+
+#hero img {
+    border-width: 1en;
+    border-color: rgb(69, 72, 110);
+    border-style: solid;
+}
+
+.post_list_item {
+    @extend .box;
+    background: none;
+    border: solid 1px rgb(69, 72, 110);
+}

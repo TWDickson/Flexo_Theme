@@ -1,8 +1,8 @@
 
-{{ $bundleRaw := resources.Get "sass/styles.sass" }}
+{{ $bundleRaw := resources.Get "sass/styles.scss" }}
 
 
-{{ $bundle := $bundleRaw | resources.ToCSS (dict "outputStyle" "compressed") | fingerprint}}
+{{ $bundle := $bundleRaw | resources.ToCSS (dict "outputStyle" "compressed" "includePaths" (slice "node_modules")) | fingerprint}}
 <link rel="stylesheet" href="{{ $bundle.RelPermalink }}" crossorigin="anonymous" media="screen"
 	integrity="{{ $bundle.Data.Integrity }}">
 

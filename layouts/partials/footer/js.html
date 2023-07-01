@@ -1,8 +1,6 @@
-{{ $js_bundle := slice }}
-{{ $js_bundle = $js_bundle | append (resources.Get "js/burger_menu.js") }}
-
-{{ $js_bundle = $js_bundle | resources.Concat "js/flexo.min.js" | fingerprint "md5" }}
-<script src="{{ $js_bundle.RelPermalink }}" intergrity="{{ $js_bundle.Data.Integrity }}" crossorigin="anonymous"></script>
+{{ $options := dict "targetPath" "main.js" "externals" ( slice "node_modules" ) }}
+{{ $built := resources.Get "js/main.js" | js.Build $options }}
+<script type="text/javascript" src="{{ $built.RelPermalink }}" defer></script>
 {{ if hugo.IsProduction }}
 <script defer data-domain="twdickson.com" src="https://pa.twdickson.com/js/script.js"></script>
 {{ end }}
